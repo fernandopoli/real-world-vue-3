@@ -6,7 +6,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import EventService from '@/services/EventService.js'
 import EventCard from '@/components/EventCard.vue'
 
 export default {
@@ -16,29 +16,17 @@ export default {
   },
   data() {
     return {
-      events: [
-        {
-          date: '13/08/1981',
-          time: '18:00',
-          title: 'Prueba 01',
-        },
-        {
-          date: '13/08/1982',
-          time: '18:00',
-          title: 'Prueba 02',
-        },
-        {
-          date: '13/08/1983',
-          time: '18:00',
-          title: 'Prueba 03',
-        },
-        {
-          date: '13/08/1984',
-          time: '18:00',
-          title: 'Prueba 04',
-        },
-      ],
+      events: null,
     }
+  },
+  created() {
+    EventService.getEvents()
+      .then((response) => {
+        this.events = response.data
+      })
+      .catch((error) => {
+        console.log(error)
+      })
   },
 }
 </script>

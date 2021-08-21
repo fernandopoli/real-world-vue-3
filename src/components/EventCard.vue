@@ -1,8 +1,11 @@
 <template>
-  <div class="event-card">
+  <router-link
+    :to="{ name: 'EventDetail', params: { id: event.id } }"
+    class="event-card"
+  >
     <span>@ {{ event.time }} on {{ event.date }}</span>
     <h4>{{ event.title }}</h4>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -18,6 +21,8 @@ export default {
 <style scoped lang="scss">
 .event {
   &-card {
+    text-decoration: none;
+    color: black;
     margin-bottom: 30px;
     width: 250px;
     display: flex;
@@ -26,6 +31,10 @@ export default {
     align-items: center;
     border: 1px solid;
     padding: 30px;
+    transition: all 300ms;
+    &:hover {
+      box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.24);
+    }
     h4 {
       margin-bottom: 0px;
     }
